@@ -1,43 +1,74 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(AppTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MiPaguinaInicio(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class MiPaguinaInicio extends StatefulWidget {
+  const MiPaguinaInicio({Key? key}) : super(key: key);
 
   @override
+  State<MiPaguinaInicio> createState() => _MiPaguinaInicioState();
+}
+
+class _MiPaguinaInicioState extends State<MiPaguinaInicio> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("TabBar Brandon Cristobal",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+          bottom: TabBar(tabs: [
+            Tab(
+              text: "unit",
+              icon: Icon(Icons.ac_unit),
+            ), //Texto Icons/
+            Tab(
+              text: "acessible",
+              icon: Icon(Icons.accessible_forward_outlined),
+            ), //Texto Icons, //Texto Icons/
+            Tab(
+              text: "padding",
+              icon: Icon(Icons.padding),
+            ), //Texto Icons
+            Tab(
+              text: "upcomin",
+              icon: Icon(Icons.upcoming),
+            ) //Texto Icons
+          ]),
         ),
+        body: TabBarView(children: const <Widget>[
+          Center(
+            child: Text("Alerta",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+          ),
+          Center(
+            child: Text("Sicha de Ruedas",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+          ),
+          Center(
+            child: Text("Padding",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+          ),
+          Center(
+            child: Text("upcoming",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+          ),
+        ]),
       ),
     );
-  }
+  } //Widget
 }
